@@ -52,13 +52,17 @@ public class PlayerPlatformerController : PhysicsObject {
         {
             maxSpeed = 7f;
         }
-        
+
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             animacaoAgacha();
         }
+        else if (Input.GetKeyUp(KeyCode.DownArrow)) 
+        {
+            velocity.x = 0.01f;
+        }
 
-        if (Input.GetButtonDown("Jump") && grounded)
+            if (Input.GetButtonDown("Jump") && grounded)
         {
             velocity.y = jumpTakeOffSpeed;
  
