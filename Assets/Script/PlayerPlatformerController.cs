@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerPlatformerController : PhysicsObject {
+    [SerializeField] private Collider2D m_CrouchDisableCollider;				// A collider that will be disabled when crouching
     public float maxSpeed = 7f;
     public float jumpTakeOffSpeed = 7f;
     private SpriteRenderer SpriteRenderer;
@@ -11,6 +12,7 @@ public class PlayerPlatformerController : PhysicsObject {
     [SerializeField]
     private bool danoCritico = false;
     [SerializeField]
+
     private CapsuleCollider2D ataqueEfeito;
     void Awake () {
         ataqueEnab();
@@ -55,10 +57,12 @@ public class PlayerPlatformerController : PhysicsObject {
 
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
+            m_CrouchDisableCollider.enabled = false;
             animacaoAgacha();
         }
         else if (Input.GetKeyUp(KeyCode.DownArrow)) 
         {
+            m_CrouchDisableCollider.enabled = true;
             velocity.x = 0.01f;
         }
 
